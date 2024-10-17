@@ -9,9 +9,9 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalTileSize = 32; // 32 tile sprites
     final int scale = 3;
 
-    final int tileSize = originalTileSize * scale; // 96
-    final int maxScreenCol = 16;
-    final int maxScreenWid = 9;
+    final int tileSize = originalTileSize * scale; // 96 pixels per tile
+    final int maxScreenCol = 16;    // aspect ratio for modern screens
+    final int maxScreenWid = 9;     // aspect ratio for modern screens
     final int screenWidth = tileSize * maxScreenCol;
     final int screenHeight = tileSize * maxScreenWid;
 
@@ -72,34 +72,48 @@ public class GamePanel extends JPanel implements Runnable{
         //  ONE DIRECTIONAL MOVEMENT
         if (keyH.upPressed){
             playerY -= playerSpeed;
+            if (keyH.dodgePressed){ // dash
+                playerY -= 25;
+            }
         }
         else if (keyH.downPressed){
             playerY += playerSpeed;
+            if (keyH.dodgePressed){
+                playerY += 25;
+            }
         }
         else if (keyH.leftPressed){
             playerX -= playerSpeed;
+            if (keyH.dodgePressed){
+                playerX -= 25;
+            }
         }
         else if (keyH.rightPressed){
+            if (keyH.dodgePressed){
+                playerX += 25;
+            }
             playerX += playerSpeed;
         }
 
         //  DIAGONAL MOVEMENT
         if (keyH.upPressed && keyH.rightPressed){ // up-right
-            playerY -= playerSpeed * 0.5;
+            playerY -= playerSpeed * 0.25;
             playerX += playerSpeed * 0.5;
         }
         else if (keyH.upPressed && keyH.leftPressed){ // up-left
-            playerY -= playerSpeed * 0.5;
+            playerY -= playerSpeed * 0.25;
             playerX -= playerSpeed * 0.5;
         }
         else if (keyH.downPressed && keyH.rightPressed){ // down-right
-            playerY += playerSpeed * 0.5;
+            playerY += playerSpeed * 0.25;
             playerX += playerSpeed * 0.5;
         }
         else if (keyH.downPressed && keyH.leftPressed){ // down-right
-            playerY += playerSpeed * 0.5;
+            playerY += playerSpeed * 0.25;
             playerX -= playerSpeed * 0.5;
         }
+
+
 
     }
 
