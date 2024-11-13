@@ -1,10 +1,20 @@
 package Main;
 
+import javax.security.auth.kerberos.KeyTab;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    public boolean upPressed, downPressed, leftPressed, rightPressed, dodgePressed;
+
+    GamePanel gp;
+    public boolean upPressed, downPressed, leftPressed, rightPressed;
+
+    //DEBUG
+    boolean checkDrawTime = false;
+
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -28,8 +38,22 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D){ // right
             rightPressed = true;
         }
-        if (code == KeyEvent.VK_SPACE){
-            dodgePressed = true;
+        if (code == KeyEvent.VK_ESCAPE){ // enter pause state
+            if (gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+            }
+            else if (gp.gameState == gp.pauseState){
+                gp.gameState = gp.playState;
+            }
+        }
+
+        // DEBUG
+        if (code == KeyEvent.VK_T){ // check drawTime
+            if (!checkDrawTime) {
+                checkDrawTime = true;
+            } else if (checkDrawTime) {
+                checkDrawTime = false;
+            }
         }
     }
 
@@ -50,8 +74,6 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D){ // right
             rightPressed = false;
         }
-        if (code == KeyEvent.VK_SPACE){
-            dodgePressed = false;
-        }
     }
+
 }
