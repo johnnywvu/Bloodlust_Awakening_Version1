@@ -1,26 +1,18 @@
 package objects;
 
+import Entity.Entity;
 import Main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class OBJ_dungeonDoor extends superObject{
-
-    GamePanel gp;
-
+public class OBJ_dungeonDoor extends Entity {
+    
     public OBJ_dungeonDoor(GamePanel gp){
-
-        this.gp = gp;
+        super(gp);
 
         name = "Dungeon Door";
-
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/OBJ_lockedDungeonDoor.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        down = setup("/objects/OBJ_lockedDungeonDoor");
 
         collision = true;
     }

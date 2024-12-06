@@ -21,16 +21,67 @@ public class TileManager {
     public TileManager(GamePanel gp){
         this.gp = gp;
 
-        tile = new Tile[50];
+        tile = new Tile[60];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("/maps/LEVEL1_.txt");
+        loadMap("/maps/tutorialLevel.txt");
     }
 
     public void getTileImage(){
-        setup(0,"wall", true);
-        setup(1,"dirt", false);
+        // 0, 1, 3, 4, 5, 6, 14, 15, 16, 17, 24, 26, 27, 28, 33, 40, 44, 45, 46, 49
+        setup(0,"000", false);
+        setup(1,"001", true);
+
+        setup(3,"003", true);
+        setup(4,"004", true);
+        setup(5,"005", true);
+        setup(6,"006", true);
+
+
+
+
+
+
+
+        setup(14,"014", true);
+        setup(15,"015", true);
+        setup(16,"016", true);
+        setup(17,"017", true);
+
+
+
+
+
+
+        setup(24,"024", true);
+
+        setup(26,"026", true);
+        setup(27,"027", true);
+        setup(28,"028", true);
+
+
+
+
+        setup(33,"033", true);
+
+
+
+
+
+
+        setup(40,"040", true);
+
+
+
+        setup(44,"044", true);
+        setup(45,"045", true);
+        setup(46,"046", true);
+        setup(49,"049", false);
+
+
+        setup(52,"052", false);
+        setup(53,"053",false);
     }
 
     public void setup(int index, String imageName, boolean collision){
@@ -59,7 +110,6 @@ public class TileManager {
             while (col < gp.maxWorldCol && row < gp.maxWorldRow){
 
                 String line = br.readLine();
-
 
                 while (col < gp.maxWorldCol) {
                     String numbers[] = line.split(" ");
