@@ -12,7 +12,7 @@ public class OBJ_dungeonKey extends Entity {
         super(gp);
 
         name = "Dungeon Key";
-        down = setup("/objects/OBJ_dungeonKey");
+        down = setup("/objects/OBJ_dungeonKey", gp.tileSize, gp.tileSize);
 
     }
 }

@@ -17,7 +17,7 @@ public class UI {
     public String message = "";
     public String currentDialogue = "";
     private BufferedImage titleScreenImage, cursor, dashbar;
-    private BufferedImage defaultSelected, meleeSelected, rangeSelected, mageSelected, quickPotionSelected;
+    private BufferedImage defaultSelected, meleeSelected, rangeSelected, mageSelected, shieldSelected;
     double screenImageX;
     double screenImageY;
     public int commandNum = 0;
@@ -116,7 +116,6 @@ public class UI {
     }
 
 
-
     public void drawGearSelector(){
         BufferedImage image = null;
 
@@ -137,11 +136,11 @@ public class UI {
                 image = mageSelected;
                 break;
             case 4:
-                image = quickPotionSelected;
+                image = shieldSelected;
                 break;
         }
 
-        g2.drawImage(image,x,y,gp.tileSize * gp.scale, gp.tileSize * gp.scale, null);
+        g2.drawImage(image,x,y,image.getWidth() * gp.scale, image.getHeight() * gp.scale, null);
 
     }
 
@@ -189,7 +188,7 @@ public class UI {
         meleeSelected = setup("/UI/melee-selected");
         rangeSelected = setup("/UI/range-selected");
         mageSelected = setup("/UI/magic-selected");
-        quickPotionSelected = setup("/UI/quick_potion-selected");
+        shieldSelected = setup("/UI/shield-selected");
         defaultSelected = setup("/UI/default-selection");
     }
 

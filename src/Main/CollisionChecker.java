@@ -4,6 +4,8 @@ import Entity.Entity;
 
 public class CollisionChecker {
 
+//    WTF IS THIS
+
     GamePanel gp;
 
     public CollisionChecker(GamePanel gp){

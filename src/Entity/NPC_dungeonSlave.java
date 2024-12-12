@@ -26,10 +26,10 @@ public class NPC_dungeonSlave extends Entity{
     }
 
     public void getImage(){
-        up = setup("/NPC/dungeon_slave");
-        down = setup("/NPC/dungeon_slave");
-        right = setup("/NPC/dungeon_slave");
-        left = setup("/NPC/dungeon_slave");
+        up = setup("/NPC/dungeon_slave", gp.tileSize, gp.tileSize);
+        down = setup("/NPC/dungeon_slave", gp.tileSize, gp.tileSize);
+        right = setup("/NPC/dungeon_slave", gp.tileSize, gp.tileSize);
+        left = setup("/NPC/dungeon_slave", gp.tileSize, gp.tileSize);
     }
 
     public void setDialogue(){

@@ -6,9 +6,11 @@ import Main.GamePanel;
 import java.util.Random;
 
 public class MOB_BlueSlime extends Entity {
-
+    GamePanel gp;
     public MOB_BlueSlime(GamePanel gp) {
         super(gp);
+
+        this.gp = gp;
 
         type = 2;
         name = "Blue Slime";
@@ -28,14 +30,14 @@ public class MOB_BlueSlime extends Entity {
     }
 
     public void getImage(){
-        up = setup("/Mobs/blue_slime2");
-        up2 = setup("/Mobs/blue_slime1");
-        down = setup("/Mobs/blue_slime2");
-        down2 = setup("/Mobs/blue_slime1");
-        right = setup("/Mobs/blue_slime2");
-        right2 = setup("/Mobs/blue_slime1");
-        left = setup("/Mobs/blue_slime2");
-        left2 = setup("/Mobs/blue_slime1");
+        up = setup("/Mobs/blue_slime2", gp.tileSize, gp.tileSize);
+        up2 = setup("/Mobs/blue_slime1", gp.tileSize, gp.tileSize);
+        down = setup("/Mobs/blue_slime2", gp.tileSize, gp.tileSize);
+        down2 = setup("/Mobs/blue_slime1", gp.tileSize, gp.tileSize);
+        right = setup("/Mobs/blue_slime2", gp.tileSize, gp.tileSize);
+        right2 = setup("/Mobs/blue_slime1", gp.tileSize, gp.tileSize);
+        left = setup("/Mobs/blue_slime2", gp.tileSize, gp.tileSize);
+        left2 = setup("/Mobs/blue_slime1", gp.tileSize, gp.tileSize);
     }
 
     public void setAction(){

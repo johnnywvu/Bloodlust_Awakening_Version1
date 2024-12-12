@@ -56,43 +56,21 @@ public class KeyHandler implements KeyListener {
 
 //         PLAY STATE
         if(gp.gameState == gp.playState){
-            if (code == KeyEvent.VK_W){ // up
-                upPressed = true;
-            }
-            if (code == KeyEvent.VK_S){ // down
-                downPressed = true;
-            }
-            if (code == KeyEvent.VK_A){ // left
-                leftPressed = true;
-            }
-            if (code == KeyEvent.VK_D){ // right
-                rightPressed = true;
-            }
-            if (code == KeyEvent.VK_ESCAPE){ // enter pause state
-                gp.gameState = gp.pauseState;
-            }
-            if (code == KeyEvent.VK_ENTER){ // interaction with objects/npcs
-                enterPressed = true;
-            }
+            if (code == KeyEvent.VK_W){upPressed = true;}
+            if (code == KeyEvent.VK_S){downPressed = true;}
+            if (code == KeyEvent.VK_A){leftPressed = true;}
+            if (code == KeyEvent.VK_D){rightPressed = true;}
+            if (code == KeyEvent.VK_ESCAPE){gp.gameState = gp.pauseState;}  // enter pause state
+            if (code == KeyEvent.VK_ENTER){enterPressed = true;}            // interaction with objects/npcs
 
             // DASH
-            if (code == KeyEvent.VK_SPACE){
-                spacePressed = true;
-            }
+            if (code == KeyEvent.VK_SPACE){spacePressed = true;}
 
             // GEAR SELECTION
-            if (code == KeyEvent.VK_1){
-                onePressed = true;
-            }
-            if (code == KeyEvent.VK_2){
-                twoPressed = true;
-            }
-            if (code == KeyEvent.VK_3){
-                threePressed = true;
-            }
-            if (code == KeyEvent.VK_4){
-                fourPressed = true;
-            }
+            if (code == KeyEvent.VK_1){onePressed = true;}
+            if (code == KeyEvent.VK_2){twoPressed = true;}
+            if (code == KeyEvent.VK_3){threePressed = true;}
+            if (code == KeyEvent.VK_4){fourPressed = true;}
 
             // DEBUG
             if (code == KeyEvent.VK_T){ // check drawTime
@@ -124,35 +102,20 @@ public class KeyHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_SPACE){
-            spacePressed = false;
-        }
+        // DASH
+        if (code == KeyEvent.VK_SPACE){spacePressed = false;}
 
-        if (code == KeyEvent.VK_W){ // up
-            upPressed = false;
-        }
-        if (code == KeyEvent.VK_S){ // down
-            downPressed = false;
-        }
-        if (code == KeyEvent.VK_A){ // left
-            leftPressed = false;
-        }
-        if (code == KeyEvent.VK_D){ // right
-            rightPressed = false;
-        }
+        // MOVEMENT
+        if (code == KeyEvent.VK_W){upPressed = false;}
+        if (code == KeyEvent.VK_S){downPressed = false;}
+        if (code == KeyEvent.VK_A){leftPressed = false;}
+        if (code == KeyEvent.VK_D){rightPressed = false;}
 
-        if (code == KeyEvent.VK_1){
-            onePressed = false;
-        }
-        if (code == KeyEvent.VK_2){
-            twoPressed = false;
-        }
-        if (code == KeyEvent.VK_3){
-            threePressed = false;
-        }
-        if (code == KeyEvent.VK_4){
-            fourPressed = false;
-        }
+        // GEAR SELECTION
+        if (code == KeyEvent.VK_1){onePressed = false;}
+        if (code == KeyEvent.VK_2){twoPressed = false;}
+        if (code == KeyEvent.VK_3){threePressed = false;}
+        if (code == KeyEvent.VK_4){fourPressed = false;}
     }
 
 }

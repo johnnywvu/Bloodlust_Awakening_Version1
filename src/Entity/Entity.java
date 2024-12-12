@@ -13,32 +13,48 @@ public class Entity {
     GamePanel gp;
 
     public int worldX,worldY;
-    public int defaultSpeed;
 
     public BufferedImage up, down, left, right,
                          up2, down2, left2, right2; // idle
-
-    // running animations
+    public BufferedImage attackUp, attackDown, attackRight, attackLeft;
+    public BufferedImage shieldUp, shieldDown, shieldRight, shieldLeft;
 
     public String direction = "down";
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public Rectangle solidArea = new Rectangle();
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
     public BufferedImage image, image2, image3;
-    public String name;
     public boolean collision = false;
     public boolean invincible = false;
     public int invincibleCounter = 0;
-    public int type; // 0 = player, 1 = npc, 2 = mob
 
-    // CHARACTER STATUS
+    public boolean guarding = false;
+
+    // CHARACTER ATTRIBUTES
+    public int type; // 0 = player, 1 = npc, 2 = mob
+    public String name;
+    public int defaultSpeed;
     public int maxLife;
     public int life;
+    public int level;
+    public int strength;
+    public int dexterity;
+    public int intelligence;
+    public int defense;
+    public int exp;
+    public int coin;
+    public Entity currentWeapon;
+    public Entity currentShield;
+
+    // GEAR ATTRIBUTES
+    public int attackValue;
+    public int defenseValue;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -107,16 +123,24 @@ public class Entity {
             }
             spriteCounter = 0;
         }
+
+        if (invincible){
+            invincibleCounter++;
+            if (invincibleCounter > 40){
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 
     // method to modularize the image setting code
-    public BufferedImage setup(String path){
+    public BufferedImage setup(String path, int width, int height){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(getClass().getResourceAsStream(path + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,36 +172,20 @@ public class Entity {
 
         switch (direction){
             case "up":
-                if (spriteNum == 1){
-                    image = up;
-                }
-                if (spriteNum == 2){
-                    image = up2;
-                }
+                if (spriteNum == 1){image = up;}
+                if (spriteNum == 2){image = up2;}
                 break;
             case "down":
-                if (spriteNum == 1){
-                    image = down;
-                }
-                if (spriteNum == 2){
-                    image = down2;
-                }
+                if (spriteNum == 1){image = down;}
+                if (spriteNum == 2){image = down2;}
                 break;
             case "right":
-                if (spriteNum == 1){
-                    image = right;
-                }
-                if (spriteNum == 2){
-                    image = right2;
-                }
+                if (spriteNum == 1){image = right;}
+                if (spriteNum == 2){image = right2;}
                 break;
             case "left":
-                if (spriteNum == 1){
-                    image = left;
-                }
-                if (spriteNum == 2){
-                    image = left2;
-                }
+                if (spriteNum == 1){image = left;}
+                if (spriteNum == 2){image = left2;}
                 break;
         }
 
@@ -190,14 +198,20 @@ public class Entity {
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+            if (invincible){g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));}
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
         else if (gp.player.worldX < gp.player.screenX ||
                 gp.player.worldY < gp.player.screenY ||
                 rightOffset > gp.worldWidth - gp.player.worldX ||
                 bottomOffset > gp.worldHeight - gp.player.worldY ) {
-            g2.drawImage(image,screenX,screenY,gp.tileSize,gp.tileSize,null);
+            if (invincible){g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));}
+            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
+
+
 
     }
 }

@@ -12,7 +12,7 @@ public class OBJ_dungeonDoor extends Entity {
         super(gp);
 
         name = "Dungeon Door";
-        down = setup("/objects/OBJ_lockedDungeonDoor");
+        down = setup("/objects/OBJ_lockedDungeonDoor", gp.tileSize, gp.tileSize);
 
         collision = true;
     }

@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
     // Screen Settings
     final int originalTileSize = 16; // 16 tile sprites
@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
     // SYSTEM
     TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
+    public MouseHandler mouseH = new MouseHandler(this);
     Audio music = new Audio();
     Audio sfx = new Audio();
     public CollisionChecker cCheker = new CollisionChecker(this);
@@ -44,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
 
     //ENTITY AND OBJECTS
-    public Player player = new Player(this,keyH);
+    public Player player = new Player(this, keyH, mouseH);
     public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[10];
     public Entity mobs[] = new Entity[20];
@@ -62,7 +63,9 @@ public class GamePanel extends JPanel implements Runnable{
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
+        this.addMouseListener(mouseH);
         this.setFocusable(true);
+        this.requestFocusInWindow();
     }
 
     public void setupGame() {
